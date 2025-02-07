@@ -1,0 +1,35 @@
+{
+  "name": "safegpt",
+  "private": true,
+  "version": "0.1.1",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@botpress/webchat": "2.3.8",
+    "@botpress/webchat-generator": "0.2.15",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.19.0",
+    "@types/react": "19.0.8",
+    "@types/react-dom": "19.0.3",
+    "@vitejs/plugin-react": "4.3.4",
+    "eslint": "9.19.0",
+    "eslint-plugin-react-hooks": "5.1.0",
+    "eslint-plugin-react-refresh": "0.4.18",
+    "globals": "15.14.0",
+    "typescript": "5.7.3",
+    "typescript-eslint": "8.23.0",
+    "vite": "6.1.0"
+  },
+  "description": "��#\u0000 \u0000S\u0000A\u0000F\u0000E\u0000G\u0000P\u0000T\u0000\r\u0000 \u0000",
+  "main": "eslint.config.js",
+  "author": "",
+  "license": "ISC"
+}
