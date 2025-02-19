@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import Login from './Login' // Make sure this component accepts onLoginSuccess prop
 import {
   getClient,
   Webchat,
@@ -21,30 +22,41 @@ const configuration: Configuration = {
 }
 
 const App: React.FC = () => {
+  // State to determine if the user has successfully logged in
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
   // State to hold the Webchat client instance
   const [client, setClient] = useState<WebchatClient | null>(null)
 
   useEffect(() => {
-    // Initialize the client using your client ID
-    const clientInstance = getClient({ clientId })
-    setClient(clientInstance)
+    if (isAuthenticated) {
+      // Initialize the Botpress client once the user is authenticated
+      const clientInstance = getClient({ clientId })
+      setClient(clientInstance)
 
-    // Optional: Listen to all events from the Webchat
-    clientInstance.on('*', (event: any) => {
-      console.log('Event received from Webchat:', event)
+      // Optional: Listen to all events from the Webchat
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      clientInstance.on('*', (event: any) => {
+        console.log('Event received from Webchat:', event)
 
-      // Example: Calling the getUser API
-      clientInstance.getUser().then((user) => {
-        console.log('Current user:', user)
+        // Example: Calling the getUser API
+        clientInstance.getUser().then((user) => {
+          console.log('Current user:', user)
+        })
       })
-    })
-  }, [])
+    }
+  }, [isAuthenticated])
 
-  // Wait until the client is ready
+  // If not authenticated, show the login page
+  if (!isAuthenticated) {
+    return <Login onLoginSuccess={() => setIsAuthenticated(true)} />
+  }
+
+  // While waiting for the Webchat client to initialize
   if (!client) {
     return <div>Loading chat...</div>
   }
 
+  // Once authenticated and the client is ready, render the chat
   return (
     <div style={{ width: '100vw', height: '100vh' }}>
       <WebchatProvider
@@ -52,7 +64,6 @@ const App: React.FC = () => {
         configuration={configuration}
         userData={userData}
       >
-        {/* The Webchat component renders the complete chat UI */}
         <Webchat />
       </WebchatProvider>
     </div>
