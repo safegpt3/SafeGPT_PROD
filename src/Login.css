@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0.795);
+  background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,7 +19,7 @@ body {
 .container {
   background-color: #fff;
   border-radius: 30px;
-  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.35);
+  box-shadow: 0 5px 15px rgba(168, 16, 16, 0.35);
   position: relative;
   overflow: hidden;
   width: 768px;
